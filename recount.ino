@@ -1,4 +1,3 @@
-
 //-------------------------- LED CODE ---------------------------//
 
 #include "FastLED.h"
@@ -256,7 +255,9 @@ void animated1() {
    off();
  }
 
-    if ( millis() - startTime > event_a0 &&  millis() - startTime < event_aBar) {
+  //1st part of audio
+
+  else if ( millis() - startTime > event_a0 &&  millis() - startTime < event_aBar) {
   // Turn the LED on, then pause
   leds[0] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -265,27 +266,28 @@ void animated1() {
   leds[0] = CRGB::PowderBlue;
   FastLED.show();  
     delay(100);
-
   }
 
 
-//For LED bar
+  //2nd part of audio, for LED bar
 
-    if ( millis() - startTime > event_aBar && millis() - startTime < event_a2) {
+   else if ( millis() - startTime > event_aBar && millis() - startTime < event_a2) {
        for ( int i = 0; i < 1; i++ ){
          leds[i] = CRGB::DarkRed; // Can be any colour
        }
 
-    
-      for ( int i = 1; i < 5; i++ )
+        for ( int i = 1; i < 5; i++ )
           {
             leds[i] = CRGB::Yellow; // Can be any colour
             leds[i].maximizeBrightness(FastLED_fade_counter);  // 'FastLED_fade_counter' How high we want to fade up to 255 = maximum.
           }
             FastLED.show();
-            FastLED_fade_counter ++;   // Increment
+            if(FastLED_fade_counter<255){
+              FastLED_fade_counter ++;   // Increment
+            }
             delay(timer2);
   }
+  
   else if ( millis() - startTime > event_a2) {
     for ( int i = 0; i < 1; i++ ){
     // Turn the LED on, then pause
@@ -365,7 +367,7 @@ void animated2() {
    off();
  }
 
-    if ( millis() - startTime > event_b0 &&  millis() - startTime < event_bBar) {
+ if ( millis() - startTime > event_b0 &&  millis() - startTime < event_bBar) {
   // Turn the LED on, then pause
   leds[0] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -373,7 +375,7 @@ void animated2() {
   // Now turn the LED off, then pause
   leds[0] = CRGB::PowderBlue;
   FastLED.show();  
-    delay(100);
+  delay(100);
 
   }
 
@@ -382,7 +384,7 @@ void animated2() {
 
 //For LED 1
 
-    if ( millis() - startTime > event_b1 &&  millis() - startTime < event_bBar) {
+ if ( millis() - startTime > event_b1 &&  millis() - startTime < event_bBar) {
   // Turn the LED on, then pause
   leds[1] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -396,7 +398,7 @@ void animated2() {
 
 //For LED 2
 
-    if ( millis() - startTime > event_b2 &&  millis() - startTime < event_bBar ) {
+  if ( millis() - startTime > event_b2 &&  millis() - startTime < event_bBar ) {
   // Turn the LED on, then pause
   leds[2] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -412,7 +414,7 @@ void animated2() {
 
 //For LED bar
 
-    if ( millis() - startTime > event_bBar && millis() - startTime < event_b3) {
+  if ( millis() - startTime > event_bBar && millis() - startTime < event_b3) {
        for ( int i = 0; i < 3; i++ ){
          leds[i] = CRGB::DarkRed; // Can be any colour
        }
@@ -424,10 +426,14 @@ void animated2() {
             leds[i].maximizeBrightness(FastLED_fade_counter);  // 'FastLED_fade_counter' How high we want to fade up to 255 = maximum.
           }
             FastLED.show();
-            FastLED_fade_counter ++;   // Increment
+            if(FastLED_fade_counter<255){
+              FastLED_fade_counter ++;   // Increment
+            }
+            
             delay(timer2);
   }
-  else if ( millis() - startTime > event_b3) {
+
+  if ( millis() - startTime > event_b3) {
     for ( int i = 0; i < 3; i++ ){
     // Turn the LED on, then pause
     leds[i] = CRGB::CornflowerBlue ;
@@ -438,15 +444,10 @@ void animated2() {
     FastLED.show();  
       delay(100);
     }
-  }
 
-
-  
 
    //For LED 12
-
-    if ( millis() - startTime > event_b3 ) {
-  // Turn the LED on, then pause
+      // Turn the LED on, then pause
   leds[12] = CRGB::CornflowerBlue ;
   FastLED.show();
   delay(100);
@@ -455,14 +456,11 @@ void animated2() {
   FastLED.show();  
     delay(100);
   }
-  else {
-  //leds[7] = CRGB::Black;
-  //FastLED.show();  
-  }
+
 
      //For LED 13
 
-    if ( millis() - startTime > event_b4 ) {
+  if ( millis() - startTime > event_b4 ) {
   // Turn the LED on, then pause
   leds[13] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -472,14 +470,11 @@ void animated2() {
   FastLED.show();  
     delay(100);
   }
-  else {
-  //leds[7] = CRGB::Black;
-  //FastLED.show();  
-  }
+
 
      //For LED 14
 
-    if ( millis() - startTime > event_b5 ) {
+  if ( millis() - startTime > event_b5 ) {
   // Turn the LED on, then pause
   leds[14] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -489,14 +484,11 @@ void animated2() {
   FastLED.show();  
     delay(100);
   }
-  else {
-  //leds[7] = CRGB::Black;
-  //FastLED.show();  
-  }
+
 
      //For LED 15
 
-    if ( millis() - startTime > event_b6 ) {
+  if ( millis() - startTime > event_b6 ) {
   // Turn the LED on, then pause
   leds[15] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -506,14 +498,11 @@ void animated2() {
   FastLED.show();  
     delay(100);
   }
-  else {
-  //leds[7] = CRGB::Black;
-  //FastLED.show();  
-  }
+
 
        //For LED 16
 
-    if ( millis() - startTime > event_b7 ) {
+  if ( millis() - startTime > event_b7 ) {
   // Turn the LED on, then pause
   leds[16] = CRGB::CornflowerBlue ;
   FastLED.show();
@@ -523,12 +512,6 @@ void animated2() {
   FastLED.show();  
     delay(100);
   }
-  else {
-  //leds[7] = CRGB::Black;
-  //FastLED.show();  
-  }
-
-
 
 
 if ( millis() - startTime > endTimeB) {
@@ -631,7 +614,9 @@ void animated3() {
             leds[i].maximizeBrightness(FastLED_fade_counter);  // 'FastLED_fade_counter' How high we want to fade up to 255 = maximum.
           }
             FastLED.show();
-            FastLED_fade_counter ++;   // Increment
+            if(FastLED_fade_counter<255){
+              FastLED_fade_counter ++;   // Increment
+            }
             delay(timer2);
   }
   else if ( millis() - startTime > event_c3) {
